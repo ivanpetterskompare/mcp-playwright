@@ -443,6 +443,368 @@ export function createToolDefinitions() {
         required: ["selector"],
       },
     },
+    // New utility tools
+    {
+      name: "playwright_click_by_test_id",
+      description: "Click on an element using test ID attribute",
+      inputSchema: {
+        type: "object",
+        properties: {
+          testId: { type: "string", description: "Test ID attribute value" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["testId"],
+      },
+    },
+    {
+      name: "playwright_fill_by_test_id",
+      description: "Fill an element using test ID attribute",
+      inputSchema: {
+        type: "object",
+        properties: {
+          testId: { type: "string", description: "Test ID attribute value" },
+          text: { type: "string", description: "Text to fill" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["testId", "text"],
+      },
+    },
+    {
+      name: "playwright_click_by_role",
+      description: "Click on an element identified by its role and name",
+      inputSchema: {
+        type: "object",
+        properties: {
+          role: { type: "string", description: "ARIA role (e.g., 'button', 'link', 'textbox')" },
+          name: { type: "string", description: "Accessible name of the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["role", "name"],
+      },
+    },
+    {
+      name: "playwright_fill_by_role",
+      description: "Fill an element identified by its role and name",
+      inputSchema: {
+        type: "object",
+        properties: {
+          role: { type: "string", description: "ARIA role (e.g., 'button', 'link', 'textbox')" },
+          name: { type: "string", description: "Accessible name of the element" },
+          text: { type: "string", description: "Text to fill" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["role", "name", "text"],
+      },
+    },
+    {
+      name: "playwright_click_by_text",
+      description: "Click on an element identified by its text content",
+      inputSchema: {
+        type: "object",
+        properties: {
+          text: { type: "string", description: "Text content to match" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["text"],
+      },
+    },
+    {
+      name: "playwright_fill_by_text",
+      description: "Fill an element identified by its text content",
+      inputSchema: {
+        type: "object",
+        properties: {
+          text: { type: "string", description: "Text content to match" },
+          inputText: { type: "string", description: "Text to fill" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["text", "inputText"],
+      },
+    },
+    {
+      name: "playwright_click_by_label",
+      description: "Click on an element identified by its label text",
+      inputSchema: {
+        type: "object",
+        properties: {
+          label: { type: "string", description: "Label text to match" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["label"],
+      },
+    },
+    {
+      name: "playwright_fill_by_label",
+      description: "Fill an element identified by its label text",
+      inputSchema: {
+        type: "object",
+        properties: {
+          label: { type: "string", description: "Label text to match" },
+          text: { type: "string", description: "Text to fill" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["label", "text"],
+      },
+    },
+    {
+      name: "playwright_click_by_placeholder",
+      description: "Click on an element identified by its placeholder text",
+      inputSchema: {
+        type: "object",
+        properties: {
+          placeholder: { type: "string", description: "Placeholder text to match" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["placeholder"],
+      },
+    },
+    {
+      name: "playwright_fill_by_placeholder",
+      description: "Fill an element identified by its placeholder text",
+      inputSchema: {
+        type: "object",
+        properties: {
+          placeholder: { type: "string", description: "Placeholder text to match" },
+          text: { type: "string", description: "Text to fill" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["placeholder", "text"],
+      },
+    },
+    {
+      name: "playwright_click_by_title",
+      description: "Click on an element identified by its title attribute",
+      inputSchema: {
+        type: "object",
+        properties: {
+          title: { type: "string", description: "Title attribute value" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["title"],
+      },
+    },
+    {
+      name: "playwright_click_by_alt",
+      description: "Click on an element identified by its alt text (for images)",
+      inputSchema: {
+        type: "object",
+        properties: {
+          alt: { type: "string", description: "Alt text to match" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["alt"],
+      },
+    },
+    {
+      name: "playwright_double_click",
+      description: "Double click on an element",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector"],
+      },
+    },
+    {
+      name: "playwright_right_click",
+      description: "Right click on an element",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector"],
+      },
+    },
+    {
+      name: "playwright_select_option_by_value",
+      description: "Select an option from a dropdown by value",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the dropdown" },
+          value: { type: "string", description: "Value to select" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector", "value"],
+      },
+    },
+    {
+      name: "playwright_select_option_by_label",
+      description: "Select an option from a dropdown by label",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the dropdown" },
+          label: { type: "string", description: "Label to select" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector", "label"],
+      },
+    },
+    {
+      name: "playwright_select_multiple_options",
+      description: "Select multiple options from a dropdown",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the dropdown" },
+          values: { type: "array", items: { type: "string" }, description: "Array of values to select" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector", "values"],
+      },
+    },
+    {
+      name: "playwright_check_element",
+      description: "Check a checkbox or radio button",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector"],
+      },
+    },
+    {
+      name: "playwright_uncheck_element",
+      description: "Uncheck a checkbox",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector"],
+      },
+    },
+    {
+      name: "playwright_type_text",
+      description: "Type text into an element (simulates keyboard input)",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          text: { type: "string", description: "Text to type" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector", "text"],
+      },
+    },
+    {
+      name: "playwright_get_element_text",
+      description: "Get the text content of an element",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector"],
+      },
+    },
+    {
+      name: "playwright_get_element_attribute",
+      description: "Get the value of an element's attribute",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          attribute: { type: "string", description: "Attribute name to get" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector", "attribute"],
+      },
+    },
+    {
+      name: "playwright_check_element_exists",
+      description: "Check if an element exists on the page",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector"],
+      },
+    },
+    {
+      name: "playwright_is_element_checked",
+      description: "Check if a checkbox is checked",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector"],
+      },
+    },
+    {
+      name: "playwright_get_input_value",
+      description: "Get the value of an input element",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector"],
+      },
+    },
+    {
+      name: "playwright_wait_for_element_hidden",
+      description: "Wait for an element to be hidden from the DOM",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector"],
+      },
+    },
+    {
+      name: "playwright_wait_for_url_change",
+      description: "Wait for URL to change or match expected URL",
+      inputSchema: {
+        type: "object",
+        properties: {
+          expectedUrl: { type: "string", description: "Expected URL to wait for (optional)" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: [],
+      },
+    },
+    {
+      name: "playwright_scroll_to_element",
+      description: "Scroll to make an element visible",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector"],
+      },
+    },
+    {
+      name: "playwright_take_element_screenshot",
+      description: "Take a screenshot of a specific element",
+      inputSchema: {
+        type: "object",
+        properties: {
+          selector: { type: "string", description: "CSS selector for the element" },
+          path: { type: "string", description: "Path to save the screenshot" },
+          timeout: { type: "number", description: "Timeout in milliseconds (default: 30000)" }
+        },
+        required: ["selector", "path"],
+      },
+    },
   ] as const satisfies Tool[];
 }
 
@@ -469,7 +831,36 @@ export const BROWSER_TOOLS = [
   "playwright_drag",
   "playwright_press_key",
   "playwright_save_as_pdf",
-  "playwright_click_and_switch_tab"
+  "playwright_click_and_switch_tab",
+  "playwright_click_by_test_id",
+  "playwright_fill_by_test_id",
+  "playwright_click_by_role",
+  "playwright_fill_by_role",
+  "playwright_click_by_text",
+  "playwright_fill_by_text",
+  "playwright_click_by_label",
+  "playwright_fill_by_label",
+  "playwright_click_by_placeholder",
+  "playwright_fill_by_placeholder",
+  "playwright_click_by_title",
+  "playwright_click_by_alt",
+  "playwright_double_click",
+  "playwright_right_click",
+  "playwright_select_option_by_value",
+  "playwright_select_option_by_label",
+  "playwright_select_multiple_options",
+  "playwright_check_element",
+  "playwright_uncheck_element",
+  "playwright_type_text",
+  "playwright_get_element_text",
+  "playwright_get_element_attribute",
+  "playwright_check_element_exists",
+  "playwright_is_element_checked",
+  "playwright_get_input_value",
+  "playwright_wait_for_element_hidden",
+  "playwright_wait_for_url_change",
+  "playwright_scroll_to_element",
+  "playwright_take_element_screenshot"
 ];
 
 // API Request tools for conditional launch
