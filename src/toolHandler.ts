@@ -27,7 +27,36 @@ import {
   HoverTool,
   EvaluateTool,
   IframeFillTool,
-  UploadFileTool
+  UploadFileTool,
+  ClickByTestIdTool,
+  FillByTestIdTool,
+  ClickByRoleTool,
+  FillByRoleTool,
+  ClickByTextTool,
+  FillByTextTool,
+  ClickByLabelTool,
+  FillByLabelTool,
+  ClickByPlaceholderTool,
+  FillByPlaceholderTool,
+  ClickByTitleTool,
+  ClickByAltTool,
+  DoubleClickTool,
+  RightClickTool,
+  SelectOptionByValueTool,
+  SelectOptionByLabelTool,
+  SelectMultipleOptionsTool,
+  CheckElementTool,
+  UncheckElementTool,
+  TypeTextTool,
+  GetElementTextTool,
+  GetElementAttributeTool,
+  CheckElementExistsTool,
+  IsElementCheckedTool,
+  GetInputValueTool,
+  WaitForElementHiddenTool,
+  WaitForUrlChangeTool,
+  ScrollToElementTool,
+  TakeElementScreenshotTool
 } from './tools/browser/interaction.js';
 import { 
   VisibleTextTool, 
@@ -100,6 +129,37 @@ let dragTool: DragTool;
 let pressKeyTool: PressKeyTool;
 let saveAsPdfTool: SaveAsPdfTool;
 let clickAndSwitchTabTool: ClickAndSwitchTabTool;
+
+// Utility tool declarations
+let clickByTestIdTool: ClickByTestIdTool;
+let fillByTestIdTool: FillByTestIdTool;
+let clickByRoleTool: ClickByRoleTool;
+let fillByRoleTool: FillByRoleTool;
+let clickByTextTool: ClickByTextTool;
+let fillByTextTool: FillByTextTool;
+let clickByLabelTool: ClickByLabelTool;
+let fillByLabelTool: FillByLabelTool;
+let clickByPlaceholderTool: ClickByPlaceholderTool;
+let fillByPlaceholderTool: FillByPlaceholderTool;
+let clickByTitleTool: ClickByTitleTool;
+let clickByAltTool: ClickByAltTool;
+let doubleClickTool: DoubleClickTool;
+let rightClickTool: RightClickTool;
+let selectOptionByValueTool: SelectOptionByValueTool;
+let selectOptionByLabelTool: SelectOptionByLabelTool;
+let selectMultipleOptionsTool: SelectMultipleOptionsTool;
+let checkElementTool: CheckElementTool;
+let uncheckElementTool: UncheckElementTool;
+let typeTextTool: TypeTextTool;
+let getElementTextTool: GetElementTextTool;
+let getElementAttributeTool: GetElementAttributeTool;
+let checkElementExistsTool: CheckElementExistsTool;
+let isElementCheckedTool: IsElementCheckedTool;
+let getInputValueTool: GetInputValueTool;
+let waitForElementHiddenTool: WaitForElementHiddenTool;
+let waitForUrlChangeTool: WaitForUrlChangeTool;
+let scrollToElementTool: ScrollToElementTool;
+let takeElementScreenshotTool: TakeElementScreenshotTool;
 
 
 interface BrowserSettings {
@@ -346,6 +406,37 @@ function initializeTools(server: any) {
   if (!pressKeyTool) pressKeyTool = new PressKeyTool(server);
   if (!saveAsPdfTool) saveAsPdfTool = new SaveAsPdfTool(server);
   if (!clickAndSwitchTabTool) clickAndSwitchTabTool = new ClickAndSwitchTabTool(server);
+
+  // Initialize utility tools
+  if (!clickByTestIdTool) clickByTestIdTool = new ClickByTestIdTool(server);
+  if (!fillByTestIdTool) fillByTestIdTool = new FillByTestIdTool(server);
+  if (!clickByRoleTool) clickByRoleTool = new ClickByRoleTool(server);
+  if (!fillByRoleTool) fillByRoleTool = new FillByRoleTool(server);
+  if (!clickByTextTool) clickByTextTool = new ClickByTextTool(server);
+  if (!fillByTextTool) fillByTextTool = new FillByTextTool(server);
+  if (!clickByLabelTool) clickByLabelTool = new ClickByLabelTool(server);
+  if (!fillByLabelTool) fillByLabelTool = new FillByLabelTool(server);
+  if (!clickByPlaceholderTool) clickByPlaceholderTool = new ClickByPlaceholderTool(server);
+  if (!fillByPlaceholderTool) fillByPlaceholderTool = new FillByPlaceholderTool(server);
+  if (!clickByTitleTool) clickByTitleTool = new ClickByTitleTool(server);
+  if (!clickByAltTool) clickByAltTool = new ClickByAltTool(server);
+  if (!doubleClickTool) doubleClickTool = new DoubleClickTool(server);
+  if (!rightClickTool) rightClickTool = new RightClickTool(server);
+  if (!selectOptionByValueTool) selectOptionByValueTool = new SelectOptionByValueTool(server);
+  if (!selectOptionByLabelTool) selectOptionByLabelTool = new SelectOptionByLabelTool(server);
+  if (!selectMultipleOptionsTool) selectMultipleOptionsTool = new SelectMultipleOptionsTool(server);
+  if (!checkElementTool) checkElementTool = new CheckElementTool(server);
+  if (!uncheckElementTool) uncheckElementTool = new UncheckElementTool(server);
+  if (!typeTextTool) typeTextTool = new TypeTextTool(server);
+  if (!getElementTextTool) getElementTextTool = new GetElementTextTool(server);
+  if (!getElementAttributeTool) getElementAttributeTool = new GetElementAttributeTool(server);
+  if (!checkElementExistsTool) checkElementExistsTool = new CheckElementExistsTool(server);
+  if (!isElementCheckedTool) isElementCheckedTool = new IsElementCheckedTool(server);
+  if (!getInputValueTool) getInputValueTool = new GetInputValueTool(server);
+  if (!waitForElementHiddenTool) waitForElementHiddenTool = new WaitForElementHiddenTool(server);
+  if (!waitForUrlChangeTool) waitForUrlChangeTool = new WaitForUrlChangeTool(server);
+  if (!scrollToElementTool) scrollToElementTool = new ScrollToElementTool(server);
+  if (!takeElementScreenshotTool) takeElementScreenshotTool = new TakeElementScreenshotTool(server);
 }
 
 /**
@@ -549,6 +640,66 @@ export async function handleToolCall(
         return await saveAsPdfTool.execute(args, context);
       case "playwright_click_and_switch_tab":
         return await clickAndSwitchTabTool.execute(args, context);
+      
+      // Utility tools
+      case "playwright_click_by_test_id":
+        return await clickByTestIdTool.execute(args, context);
+      case "playwright_fill_by_test_id":
+        return await fillByTestIdTool.execute(args, context);
+      case "playwright_click_by_role":
+        return await clickByRoleTool.execute(args, context);
+      case "playwright_fill_by_role":
+        return await fillByRoleTool.execute(args, context);
+      case "playwright_click_by_text":
+        return await clickByTextTool.execute(args, context);
+      case "playwright_fill_by_text":
+        return await fillByTextTool.execute(args, context);
+      case "playwright_click_by_label":
+        return await clickByLabelTool.execute(args, context);
+      case "playwright_fill_by_label":
+        return await fillByLabelTool.execute(args, context);
+      case "playwright_click_by_placeholder":
+        return await clickByPlaceholderTool.execute(args, context);
+      case "playwright_fill_by_placeholder":
+        return await fillByPlaceholderTool.execute(args, context);
+      case "playwright_click_by_title":
+        return await clickByTitleTool.execute(args, context);
+      case "playwright_click_by_alt":
+        return await clickByAltTool.execute(args, context);
+      case "playwright_double_click":
+        return await doubleClickTool.execute(args, context);
+      case "playwright_right_click":
+        return await rightClickTool.execute(args, context);
+      case "playwright_select_option_by_value":
+        return await selectOptionByValueTool.execute(args, context);
+      case "playwright_select_option_by_label":
+        return await selectOptionByLabelTool.execute(args, context);
+      case "playwright_select_multiple_options":
+        return await selectMultipleOptionsTool.execute(args, context);
+      case "playwright_check_element":
+        return await checkElementTool.execute(args, context);
+      case "playwright_uncheck_element":
+        return await uncheckElementTool.execute(args, context);
+      case "playwright_type_text":
+        return await typeTextTool.execute(args, context);
+      case "playwright_get_element_text":
+        return await getElementTextTool.execute(args, context);
+      case "playwright_get_element_attribute":
+        return await getElementAttributeTool.execute(args, context);
+      case "playwright_check_element_exists":
+        return await checkElementExistsTool.execute(args, context);
+      case "playwright_is_element_checked":
+        return await isElementCheckedTool.execute(args, context);
+      case "playwright_get_input_value":
+        return await getInputValueTool.execute(args, context);
+      case "playwright_wait_for_element_hidden":
+        return await waitForElementHiddenTool.execute(args, context);
+      case "playwright_wait_for_url_change":
+        return await waitForUrlChangeTool.execute(args, context);
+      case "playwright_scroll_to_element":
+        return await scrollToElementTool.execute(args, context);
+      case "playwright_take_element_screenshot":
+        return await takeElementScreenshotTool.execute(args, context);
       
       default:
         return {

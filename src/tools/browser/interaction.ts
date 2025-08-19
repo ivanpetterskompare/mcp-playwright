@@ -262,3 +262,416 @@ export class PressKeyTool extends BrowserToolBase {
 //     });
 //   }
 // }
+
+/**
+ * Tool for clicking elements by test ID
+ */
+export class ClickByTestIdTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByTestId(args.testId);
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.click();
+      return createSuccessResponse(`Clicked element with test ID: ${args.testId}`);
+    });
+  }
+}
+
+/**
+ * Tool for filling elements by test ID
+ */
+export class FillByTestIdTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByTestId(args.testId);
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.fill(args.text);
+      return createSuccessResponse(`Filled element with test ID: ${args.testId} with: ${args.text}`);
+    });
+  }
+}
+
+/**
+ * Tool for clicking elements by role and name
+ */
+export class ClickByRoleTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByRole(args.role, { name: args.name });
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.click();
+      return createSuccessResponse(`Clicked element with role: ${args.role} and name: ${args.name}`);
+    });
+  }
+}
+
+/**
+ * Tool for filling elements by role and name
+ */
+export class FillByRoleTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByRole(args.role, { name: args.name });
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.fill(args.text);
+      return createSuccessResponse(`Filled element with role: ${args.role} and name: ${args.name} with: ${args.text}`);
+    });
+  }
+}
+
+/**
+ * Tool for clicking elements by text content
+ */
+export class ClickByTextTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByText(args.text);
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.click();
+      return createSuccessResponse(`Clicked element with text: ${args.text}`);
+    });
+  }
+}
+
+/**
+ * Tool for filling elements by text content
+ */
+export class FillByTextTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByText(args.text);
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.fill(args.inputText);
+      return createSuccessResponse(`Filled element with text: ${args.text} with: ${args.inputText}`);
+    });
+  }
+}
+
+/**
+ * Tool for clicking elements by label
+ */
+export class ClickByLabelTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByLabel(args.label);
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.click();
+      return createSuccessResponse(`Clicked element with label: ${args.label}`);
+    });
+  }
+}
+
+/**
+ * Tool for filling elements by label
+ */
+export class FillByLabelTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByLabel(args.label);
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.fill(args.text);
+      return createSuccessResponse(`Filled element with label: ${args.label} with: ${args.text}`);
+    });
+  }
+}
+
+/**
+ * Tool for clicking elements by placeholder
+ */
+export class ClickByPlaceholderTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByPlaceholder(args.placeholder);
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.click();
+      return createSuccessResponse(`Clicked element with placeholder: ${args.placeholder}`);
+    });
+  }
+}
+
+/**
+ * Tool for filling elements by placeholder
+ */
+export class FillByPlaceholderTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByPlaceholder(args.placeholder);
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.fill(args.text);
+      return createSuccessResponse(`Filled element with placeholder: ${args.placeholder} with: ${args.text}`);
+    });
+  }
+}
+
+/**
+ * Tool for clicking elements by title
+ */
+export class ClickByTitleTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByTitle(args.title);
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.click();
+      return createSuccessResponse(`Clicked element with title: ${args.title}`);
+    });
+  }
+}
+
+/**
+ * Tool for clicking elements by alt text
+ */
+export class ClickByAltTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const element = page.getByAltText(args.alt);
+      await element.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await element.click();
+      return createSuccessResponse(`Clicked element with alt text: ${args.alt}`);
+    });
+  }
+}
+
+
+
+/**
+ * Tool for double clicking elements
+ */
+export class DoubleClickTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await locator.dblclick();
+      return createSuccessResponse(`Double clicked element: ${args.selector}`);
+    });
+  }
+}
+
+/**
+ * Tool for right clicking elements
+ */
+export class RightClickTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await locator.click({ button: 'right' });
+      return createSuccessResponse(`Right clicked element: ${args.selector}`);
+    });
+  }
+}
+
+/**
+ * Tool for selecting dropdown options by value
+ */
+export class SelectOptionByValueTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await locator.selectOption({ value: args.value });
+      return createSuccessResponse(`Selected option with value: ${args.value} from: ${args.selector}`);
+    });
+  }
+}
+
+/**
+ * Tool for selecting dropdown options by label
+ */
+export class SelectOptionByLabelTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await locator.selectOption({ label: args.label });
+      return createSuccessResponse(`Selected option with label: ${args.label} from: ${args.selector}`);
+    });
+  }
+}
+
+/**
+ * Tool for selecting multiple dropdown options
+ */
+export class SelectMultipleOptionsTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await locator.selectOption({ value: args.values });
+      return createSuccessResponse(`Selected multiple options: ${args.values.join(', ')} from: ${args.selector}`);
+    });
+  }
+}
+
+/**
+ * Tool for checking checkboxes/radio buttons
+ */
+export class CheckElementTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await locator.check();
+      return createSuccessResponse(`Checked element: ${args.selector}`);
+    });
+  }
+}
+
+/**
+ * Tool for unchecking checkboxes
+ */
+export class UncheckElementTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await locator.uncheck();
+      return createSuccessResponse(`Unchecked element: ${args.selector}`);
+    });
+  }
+}
+
+/**
+ * Tool for typing text into elements
+ */
+export class TypeTextTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await locator.type(args.text);
+      return createSuccessResponse(`Typed text: ${args.text} into element: ${args.selector}`);
+    });
+  }
+}
+
+/**
+ * Tool for getting element text content
+ */
+export class GetElementTextTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      const text = await locator.textContent();
+      return createSuccessResponse(`Element text content: ${text}`);
+    });
+  }
+}
+
+/**
+ * Tool for getting element attributes
+ */
+export class GetElementAttributeTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      const attribute = await locator.getAttribute(args.attribute);
+      return createSuccessResponse(`Element attribute ${args.attribute}: ${attribute}`);
+    });
+  }
+}
+
+/**
+ * Tool for checking if element exists
+ */
+export class CheckElementExistsTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      try {
+        const locator = page.locator(args.selector);
+        await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+        return createSuccessResponse(`Element exists: ${args.selector}`);
+      } catch (error) {
+        return createSuccessResponse(`Element does not exist: ${args.selector}`);
+      }
+    });
+  }
+}
+
+/**
+ * Tool for checking if element is checked
+ */
+export class IsElementCheckedTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      const isChecked = await locator.isChecked();
+      return createSuccessResponse(`Element checked state: ${isChecked}`);
+    });
+  }
+}
+
+/**
+ * Tool for getting input values
+ */
+export class GetInputValueTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      const value = await locator.inputValue();
+      return createSuccessResponse(`Input value: ${value}`);
+    });
+  }
+}
+
+/**
+ * Tool for waiting for element to be hidden
+ */
+export class WaitForElementHiddenTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'hidden', timeout: args.timeout || 30000 });
+      return createSuccessResponse(`Element is now hidden: ${args.selector}`);
+    });
+  }
+}
+
+/**
+ * Tool for waiting for URL changes
+ */
+export class WaitForUrlChangeTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      if (args.expectedUrl) {
+        await page.waitForURL(args.expectedUrl, { timeout: args.timeout || 30000 });
+        return createSuccessResponse(`URL changed to: ${args.expectedUrl}`);
+      } else {
+        await page.waitForLoadState('networkidle', { timeout: args.timeout || 30000 });
+        return createSuccessResponse(`Page load completed`);
+      }
+    });
+  }
+}
+
+/**
+ * Tool for scrolling to elements
+ */
+export class ScrollToElementTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await locator.scrollIntoViewIfNeeded();
+      return createSuccessResponse(`Scrolled to element: ${args.selector}`);
+    });
+  }
+}
+
+/**
+ * Tool for taking element screenshots
+ */
+export class TakeElementScreenshotTool extends BrowserToolBase {
+  async execute(args: any, context: ToolContext): Promise<ToolResponse> {
+    return this.safeExecute(context, async (page) => {
+      const locator = page.locator(args.selector);
+      await locator.waitFor({ state: 'visible', timeout: args.timeout || 30000 });
+      await locator.screenshot({ path: args.path });
+      return createSuccessResponse(`Screenshot saved to: ${args.path}`);
+    });
+  }
+}
